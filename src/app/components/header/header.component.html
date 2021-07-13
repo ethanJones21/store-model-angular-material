@@ -1,0 +1,34 @@
+<mat-toolbar color="primary" class="header">
+    <span class="t1">Dimar</span>
+
+    <div class="right">
+        <div class="options">
+            <mat-form-field class="search">
+                <button matPrefix mat-icon-button>
+                    <mat-icon class="search__icon">search</mat-icon>
+                </button>
+                <input
+                    matInput
+                    type="search"
+                    class="search-input"
+                    #termino
+                    (keyup)="filtersServ.search('name', termino.value)"
+                />
+                <button
+                    *ngIf="termino.value"
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    (click)="reset()"
+                >
+                    <mat-icon class="search__icon">close</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <span (click)="linkToProducts()">Productos</span>
+            <span> Inicia Sesion </span>
+        </div>
+
+        <Cart class="pointer"></Cart>
+    </div>
+</mat-toolbar>

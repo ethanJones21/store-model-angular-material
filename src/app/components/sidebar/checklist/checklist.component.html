@@ -1,0 +1,57 @@
+<!-- TODO: SE PUEDE ESCALAR SUBDIVIDIENDO COMPONENTES -->
+<section class="filter">
+    <label class="filter__title">Categorias</label>
+    <mat-radio-group
+        class="filter__contain"
+        [(ngModel)]="categoryInit"
+        (change)="filtersServ.filterExact('category', categoryInit)"
+    >
+        <ng-container *ngFor="let category of categories">
+            <mat-radio-button
+                name="radiobtnCategory"
+                class="filter__item"
+                [value]="category"
+                >{{ category }}</mat-radio-button
+            >
+        </ng-container>
+    </mat-radio-group>
+    <button *ngIf="categoryInit" (click)="removeFilter('category')">
+        Remover filtro
+    </button>
+</section>
+
+<section class="filter">
+    <label class="filter__title">Genero</label>
+    <mat-radio-group
+        class="filter__contain"
+        [(ngModel)]="genreInit"
+        (change)="filtersServ.filterExact('genre', genreInit)"
+    >
+        <ng-container *ngFor="let genre of genres">
+            <mat-radio-button class="filter__item" [value]="genre">{{
+                genre
+            }}</mat-radio-button>
+        </ng-container>
+    </mat-radio-group>
+    <button *ngIf="genreInit" (click)="removeFilter('genre')">
+        Remover filtro
+    </button>
+</section>
+
+<section class="filter">
+    <label class="filter__title">Precios</label>
+    <mat-radio-group
+        class="filter__contain"
+        [(ngModel)]="priceInit"
+        (change)="filtersServ.filterSmallerThan('price', priceInit)"
+    >
+        <ng-container *ngFor="let price of prices">
+            <mat-radio-button class="filter__item" [value]="price">{{
+                price
+            }}</mat-radio-button>
+        </ng-container>
+    </mat-radio-group>
+    <button *ngIf="priceInit" (click)="removeFilter('price')">
+        Remover filtro
+    </button>
+</section>

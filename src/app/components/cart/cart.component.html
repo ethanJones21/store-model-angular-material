@@ -1,0 +1,41 @@
+<ng-container
+    *ngIf="{ total: total$ | async, quantity: quantity$ | async } as dataCart"
+>
+    <ng-container *ngIf="dataCart.total">
+        <button
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            [matBadge]="dataCart.quantity"
+            matBadgeColor="accent"
+        >
+            <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+
+        <mat-menu #menu="matMenu">
+            <mat-list role="list" class="menu">
+                <ng-container *ngFor="let item of cartList$ | async">
+                    <div class="mini-item">
+                        <span class="mini-item__qty">
+                            {{ item.qty }}
+                        </span>
+                        <p class="mini-item__name">
+                            {{ item.name }}
+                        </p>
+                        <span class="mini-item__price">
+                            {{ item.price * item.qty | currency }}
+                        </span>
+                    </div>
+                    <mat-divider></mat-divider>
+                </ng-container>
+                <mat-list-item
+                    class="total"
+                    role="listitem"
+                    (click)="goToCheckout()"
+                >
+                    <span>Total: </span>
+                    <span class="number">{{ dataCart.total | currency }}</span>
+                </mat-list-item>
+            </mat-list>
+        </mat-menu>
+    </ng-container>
+</ng-container>

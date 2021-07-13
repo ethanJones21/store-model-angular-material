@@ -1,0 +1,11 @@
+<div class="container">
+    <Sidebar></Sidebar>
+    <div class="grid">
+        <ng-container *ngFor="let product of products; let i = index">
+            <Product
+                (addToCartClick)="addToCart($event)"
+                [product]="product"
+            ></Product>
+        </ng-container>
+    </div>
+</div>
